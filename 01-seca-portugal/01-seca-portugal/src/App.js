@@ -3,58 +3,69 @@ import * as d3 from "d3";
 import { Axis, Orient } from "d3-axis-for-react";
 import useDimensions from "react-cool-dimensions";
 import drought from "./snirh_clean.json";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip
-} from "recharts";
 
-const rios = ["ARADE", "SADO", "LIMA"];
+const rios = 
+  ['ARADE', 'AVE', 'CÁVADO/RIBEIRAS COSTEIRAS', 'DOURO', 'GUADIANA', 'LIMA', 'MIRA', 
+  'MONDEGO', 'RIBEIRAS DO ALGARVE', 'RIBEIRAS DO OESTE', 'SADO', 'TEJO'];
 const scaleLegend = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-
+// let bacias = [];
+  
 let data = [];
+let elements = [];
 
-let dadosRios = {
-  "ARADE": [],
-  "SADO": [], 
-  "LIMA": []
-}
+let dadosRios = {};
+
+rios.map((rio) => {
+  dadosRios[rio] = [];
+})
+
+// drought.map((el) => {
+//   if (el.medida === "percentagem" && el.tipo_de_infraestrutura === "bacia") {
+//     elements.push(el);
+
+//     if (!bacias.includes(el.nome_infraestrutura)){
+//       bacias.push(el.nome_infraestrutura);
+//     }
+//   }
+// })
 
 drought.map((el) => {
   if (el.medida === "percentagem" && (el.nome_infraestrutura === "SADO")) {
     el.resumo_infraestrutura = parseFloat(el.resumo_infraestrutura);
-    el.data = new Date(el.data);
-    data.push(el);
+
+    if (el.resumo_infraestrutura) {
+      el.data = new Date(el.data);
+      data.push(el);
+    }
   }
 });
 
 drought.map((el) => {
   if (el.medida === "percentagem" && (rios.includes(el.nome_infraestrutura))) {
     el.resumo_infraestrutura = parseFloat(el.resumo_infraestrutura);
-    el.data = new Date(el.data);
-  
-    dadosRios[el.nome_infraestrutura].push(el);
+
+    if (el.resumo_infraestrutura) {
+      el.data = new Date(el.data);
+    
+      dadosRios[el.nome_infraestrutura].push(el);
+    }
   }
 });
 
 data.sort((a, b) => a.data - b.data);
 
-dadosRios["ARADE"].sort((a, b) => a.data - b.data);
-dadosRios["SADO"].sort((a, b) => a.data - b.data);
-dadosRios["LIMA"].sort((a, b) => a.data - b.data);
+// rios.map((rio) => {
+//   dadosRios[rio].sort((a, b) => a.data - b.data);
+// })
 
-
-const height = 200;
-const legendHeight = 100;
+const height = 100;
 
 export default function App() {
   const { observe, width } = useDimensions();
-  const margin = { top: 30, right: 10, bottom: 30, left: 40 };
+  const margin = { top: 30, right: 20, bottom: 30, left: 70 };
 
-   var colors = d3.scaleLinear().domain([10, 50, 90])
-   .range(["orange", "yellow", "green"])
+   var colors = d3.scaleLinear().domain([0, 50, 100])
+   .range(["#877777", "yellow", "#61C972"])
 
   const x = d3
     .scaleBand()
@@ -71,11 +82,18 @@ export default function App() {
   return (
     <>
     <div className="App" ref={observe}>
+      <div style={{ display: "flex"}}>
+      <div className="UpHeader">
+        <h1 className="Title">Nível de armazenamento de água nas bacias portuguesas</h1>
+        <div className="Description">
+          <text>Maioria das bacias portuguesas tende to apenas atingir cerca de </text>
+          <text style={{fontWeight: "bold"}}>50%</text>
+          <text> da sua </text>
+          <text style={{fontWeight: "bold"}}>capacidade total de armazenamento de água</text>
+        </div>
+      </div>
 
       <div className="Legend">
-        <h3 style={{ fontSize: "15px"}}>
-          Legenda
-        </h3>
         <div style={{ display: "flex"}}>
           {scaleLegend.map((color) => (
             <div
@@ -101,12 +119,14 @@ export default function App() {
             ))}
         </div>
 
+        </div>
+
       </div>
 
       {rios.map((rio) => {
         return (
-          <div>
-            <h3 className="Header">{rio}</h3>
+          <div className="Bacia">
+            <h4 className="Header">{rio}</h4>
             <svg className="Graph" viewBox={`0 0 ${width} ${height}`}>
               <g>
                 {dadosRios[rio].map((d, i) => {  
