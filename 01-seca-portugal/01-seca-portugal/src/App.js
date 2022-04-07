@@ -8,10 +8,12 @@ const rios =
   ['ARADE', 'AVE', 'CÁVADO/RIBEIRAS COSTEIRAS', 'DOURO', 'GUADIANA', 'LIMA', 'MIRA', 
   'MONDEGO', 'RIBEIRAS DO ALGARVE', 'RIBEIRAS DO OESTE', 'SADO', 'TEJO'];
 const scaleLegend = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+const middle = 50;
 // let bacias = [];
+
   
 let data = [];
-let elements = [];
+// let elements = [];
 
 let dadosRios = {};
 
@@ -54,18 +56,14 @@ drought.map((el) => {
 
 data.sort((a, b) => a.data - b.data);
 
-// rios.map((rio) => {
-//   dadosRios[rio].sort((a, b) => a.data - b.data);
-// })
-
 const height = 100;
 
 export default function App() {
   const { observe, width } = useDimensions();
   const margin = { top: 30, right: 20, bottom: 30, left: 70 };
 
-   var colors = d3.scaleLinear().domain([0, 50, 100])
-   .range(["#877777", "yellow", "#61C972"])
+   var colors = d3.scaleLinear().domain([0, middle, 100])
+   .range(["#877777", "yellow", "#69A3F9"])
 
   const x = d3
     .scaleBand()
@@ -86,7 +84,7 @@ export default function App() {
       <div className="UpHeader">
         <h1 className="Title">Nível de armazenamento de água nas bacias portuguesas</h1>
         <div className="Description">
-          <text>Maioria das bacias portuguesas tende to apenas atingir cerca de </text>
+          <text>A maioria das bacias portuguesas tende a apenas atingir cerca de </text>
           <text style={{fontWeight: "bold"}}>50%</text>
           <text> da sua </text>
           <text style={{fontWeight: "bold"}}>capacidade total de armazenamento de água</text>
@@ -114,7 +112,7 @@ export default function App() {
                 height: "10px"
               }}
             >
-              {color === 0 || color === 50 || color === 100 ? `${color}%` : ""}
+              {color === 0 || color === middle || color === 100 ? `${color}%` : ""}
             </div>
             ))}
         </div>
@@ -169,7 +167,7 @@ export default function App() {
                   tickSizeInner={0}
                   tickSizeOuter={0}
                   scale={y}
-                  ticks={[2, "%"]}
+                  ticks={[1, "%"]}
                   domainPathProps={null}
                 />
               </g>
