@@ -1,9 +1,9 @@
-.App {
+  .App {
     font-family: sans-serif;
     text-align: left;
     background-color:azure;
+    color: #3A3B3C;
   }
-
 
   .UpHeader {
     margin-bottom: 30px;
