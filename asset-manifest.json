@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PlottingGood-Seca/static/css/main.8ec41f89.css",
+    "main.js": "/PlottingGood-Seca/static/js/main.36fe8499.js",
+    "static/js/787.aa96c999.chunk.js": "/PlottingGood-Seca/static/js/787.aa96c999.chunk.js",
+    "index.html": "/PlottingGood-Seca/index.html",
+    "main.8ec41f89.css.map": "/PlottingGood-Seca/static/css/main.8ec41f89.css.map",
+    "main.36fe8499.js.map": "/PlottingGood-Seca/static/js/main.36fe8499.js.map",
+    "787.aa96c999.chunk.js.map": "/PlottingGood-Seca/static/js/787.aa96c999.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ec41f89.css",
+    "static/js/main.36fe8499.js"
+  ]
+}
