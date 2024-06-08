@@ -70,12 +70,12 @@ export default function App() {
     <div className="App" ref={observe}>
       <div style={{ display: "flex"}}>
       <div className="UpHeader">
-        <h1 className="Title">Nível de armazenamento de água nas bacias portuguesas</h1>
+        <h1 className="Title">Water storage level in Portuguese basins</h1>
         <div className="Description">
-          <text>A maioria das bacias portuguesas tende a apenas atingir cerca de </text>
+          <text>Most Portuguese basins tend to only reach about </text>
           <text style={{fontWeight: "bold"}}>50%</text>
-          <text> da sua </text>
-          <text style={{fontWeight: "bold"}}>capacidade total de armazenamento de água</text>
+          <text> of their </text>
+          <text style={{fontWeight: "bold"}}>total water storage capacity.</text>
         </div>
       </div>
 
