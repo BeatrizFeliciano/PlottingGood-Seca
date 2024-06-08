@@ -9,27 +9,15 @@ const rios =
   'MONDEGO', 'RIBEIRAS DO ALGARVE', 'RIBEIRAS DO OESTE', 'SADO', 'TEJO'];
 const scaleLegend = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
 const middle = 50;
-// let bacias = [];
 
   
 let data = [];
-// let elements = [];
 
 let dadosRios = {};
 
 rios.map((rio) => {
   dadosRios[rio] = [];
 })
-
-// drought.map((el) => {
-//   if (el.medida === "percentagem" && el.tipo_de_infraestrutura === "bacia") {
-//     elements.push(el);
-
-//     if (!bacias.includes(el.nome_infraestrutura)){
-//       bacias.push(el.nome_infraestrutura);
-//     }
-//   }
-// })
 
 drought.map((el) => {
   if (el.medida === "percentagem" && (el.nome_infraestrutura === "SADO")) {
