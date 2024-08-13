@@ -167,7 +167,7 @@ export default function App() {
     </div>
     <div className="Footnote">
       <text>
-          Fonte: SNIRH (dados tratados pela DSSG)
+          Source: SNIRH (data processed by DSSG)
       </text>
     </div>
     </>
